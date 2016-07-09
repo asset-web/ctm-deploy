@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
 
     web.vm.provision :shell, path: "deploy.sh"
 
-    web.vm.network "forwarded_port", guest: 80, host: 8080
+    web.vm.network "forwarded_port", guest: 8000, host: 8000
   end
 
   config.vm.define "db" do |db|
