@@ -9,7 +9,7 @@ date
 yum install -y yum-cron
 sed -i.bak 's|apply_updates = no|apply_updates = yes|' /etc/yum/yum-cron.conf
 echo "Set yum to autoupdate"
-# Run below , not sure required
+# TODO: Verify not required and can be removed
 # rpm -Uvh https://www.softwarecollections.org/en/scls/rhscl/python33/epel-7-x86_64/download/rhscl-python33-epel-7-x86_64.noarch.rpm
 yum install -y epel-release
 yum install -y python34
@@ -28,9 +28,10 @@ systemctl enable sendmail
 
 pip install virtualenv
 
-echo "UPDATE: Replace example_user with actual username"
-useradd example_user && passwd example_user
-usermod -aG wheel example_user
+echo "UPDATE to create service user"
+# Replace example_user with actual username
 
-echo "Need to install https://pypi.python.org/pypi/psycopg2"
+# useradd example_user && passwd example_user
+# usermod -aG wheel example_user
 
+# TODO install https://pypi.python.org/pypi/psycopg2"
