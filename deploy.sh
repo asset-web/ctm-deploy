@@ -1,7 +1,7 @@
-# On lineone Centos & image
+# On lineone Centos & Vagrant images
 
 # Need to install ibjpeg and zlib Pillow
-yum update
+yum update -y
 hostnamectl set-hostname ctm-web
 more /etc/hosts
 timedatectl set-timezone 'Europe/London'
