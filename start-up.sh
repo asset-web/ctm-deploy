@@ -3,7 +3,7 @@ sudo mkdir -p ctm
 sudo chown `whoami`:root ctm
 virtualenv --python=python3 ctm
 cd ctm
-./bin/pip install -r  https://raw.githubusercontent.com/ta5ae/ctm-deploy/master/requirements.txt
+./bin/pip install -r  https://raw.githubusercontent.com/ta5ae/check_the_map/master/requirements.txt
 source ./bin/activate
 mkdir -p src
 cd src
