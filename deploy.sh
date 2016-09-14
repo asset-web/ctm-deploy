@@ -33,9 +33,28 @@ echo "UPDATE to create service user"
 
 cd /var/local
 mkdir -p ctm
-chown `whoami`:root ctm
+sudo chown `whoami`:root ctm
 virtualenv --python=python3 ctm
 
+# Install dependencies
+cd ctm
+./bin/pip install -r  https://raw.githubusercontent.com/ta5ae/check_the_map/requires-io-master/requirements.txt
+
+# Clone application code
+mkdir -p src
+cd src
+git clone https://github.com/ta5ae/check_the_map.git
+
+
+# Activate virtualenv
+# cd /var/local/ctm
+# source ./bin/activate
+
+# Create default super user
+# cd check_the_map
+# python manage.py migrate
+# python manage.py createsuperuser
+# python manage.py runserver 0.0.0.0:8000
 
 # Replace example_user with actual username
 
