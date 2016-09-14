@@ -30,10 +30,10 @@ Vagrant.configure(2) do |config|
 
     web.vm.provision :shell, path: "deploy.sh"
     
-    # web.vm.network "forwarded_port", guest: 8000, host: 8000
+    web.vm.network "forwarded_port", guest: 8000, host: 8000
   end
 
-  config.vm.define "db" do |db|
+  config.vm.define "db", autostart: false do |db|
     db.vm.network "private_network", ip: "192.168.33.15"
     db.vm.network "forwarded_port", guest: 22, host: 2204
     # db.vm.network "forwarded_port", guest: 3306, host: 3306
