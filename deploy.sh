@@ -28,7 +28,15 @@ systemctl enable sendmail
 
 pip install virtualenv
 
+# Create virtualenv
 echo "UPDATE to create service user"
+
+cd /var/local
+mkdir -p ctm
+chown `whoami`:root ctm
+virtualenv --python=python3 ctm
+
+
 # Replace example_user with actual username
 
 # useradd example_user && passwd example_user
