@@ -27,11 +27,11 @@ systemctl start sendmail
 systemctl enable sendmail
 pip install virtualenv
 
-# Create virtualenv
-echo "UPDATE to create service user"
-# Create a Python virtual Environment
+# Create a Python virtual environment
+cd /vagrant
 virtualenv --python=python3 venv
+chown -R vagrant:vagrant /vagrant/venv
 # Activate virtualenv
 source venv/bin/activate
 # Install third party python packages
-pip install -r /vagrant/src/check_the_map/requirements.txt
+pip3 install -r /vagrant/src/check_the_map/requirements.txt
