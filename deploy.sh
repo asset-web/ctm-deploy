@@ -1,4 +1,4 @@
-# On lineone Centos & Vagrant images
+# Centos build script
 
 # Need to install ibjpeg and zlib Pillow
 yum update -y
@@ -12,53 +12,26 @@ echo "Set yum to autoupdate"
 # TODO: Verify not required and can be removed
 # rpm -Uvh https://www.softwarecollections.org/en/scls/rhscl/python33/epel-7-x86_64/download/rhscl-python33-epel-7-x86_64.noarch.rpm
 yum install -y epel-release
-yum install -y python34
-yum install -y python34u-wheel
+yum install -y python36
+yum install -y python36u-wheel
 yum install -y python-pip
 yum install -y git
 yum install -y python-imaging
 yum install -y python-psycopg2
-yum install -y python33-python-psycopg2
+yum install -y python36-python-psycopg2
 yum install -y fail2ban
 yum install -y sendmail
 systemctl start fail2ban
 systemctl enable fail2ban
 systemctl start sendmail
 systemctl enable sendmail
-
 pip install virtualenv
 
 # Create virtualenv
 echo "UPDATE to create service user"
-
-cd /var/local
-mkdir -p ctm
-sudo chown `whoami`:root ctm
-virtualenv --python=python3 ctm
-
-# Install dependencies
-cd ctm
-./bin/pip install -r  https://raw.githubusercontent.com/ta5ae/check_the_map/requires-io-master/requirements.txt
-
-# Clone application code
-mkdir -p src
-cd src
-git clone https://github.com/ta5ae/check_the_map.git
-
-
+# Create a Python virtual Environment
+virtualenv --python=python3 venv
 # Activate virtualenv
-# cd /var/local/ctm
-# source ./bin/activate
-
-# Create default super user
-# cd check_the_map
-# python manage.py migrate
-# python manage.py createsuperuser
-# python manage.py runserver 0.0.0.0:8000
-
-# Replace example_user with actual username
-
-# useradd example_user && passwd example_user
-# usermod -aG wheel example_user
-
-# TODO install https://pypi.python.org/pypi/psycopg2"
+source venv/bin/activate
+# Install third party python packages
+pip install -r /vagrant/src/check_the_map/requirements.txt

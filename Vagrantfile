@@ -26,20 +26,17 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "web", primary: true do |web|
     web.vm.network "private_network", ip: "192.168.33.14"
-    web.vm.network "forwarded_port", guest: 22, host: 2203
-
     web.vm.provision :shell, path: "deploy.sh"
-    
     web.vm.network "forwarded_port", guest: 8000, host: 8000
+    # web.vm.synced_folder "src/", "/usr/local/ctm/src", type: "sshfs",
+    #    owner: "vagrant", group: "vagrant", :mount_options => ['dmode=775', 'fmode=775', 'nonempty']
   end
 
-  config.vm.define "db", autostart: false do |db|
-    db.vm.network "private_network", ip: "192.168.33.15"
-    db.vm.network "forwarded_port", guest: 22, host: 2204
-    # db.vm.network "forwarded_port", guest: 3306, host: 3306
-
-    # db.vm.provision
-  end
+  # TODO Configure DB set up or migrate to Docker ;)
+  # config.vm.define "db", autostart: false do |db|
+  #   db.vm.network "private_network", ip: "192.168.33.15"
+  #   db.vm.network "forwarded_port", guest: 3306, host: 3306
+  # end
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
