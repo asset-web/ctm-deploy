@@ -29,13 +29,22 @@ Based on Centos 7 installations
 	cd ctm-deploy
 	vagrant up
 
+# Intitial Django super user and database table creation
+
+	vagrant vagrant-sshfs
+	sh /vagrant/start-up.sh
+
+# Run development server
+
+	python manage.py runserver 0.0.0.0:8000
+
 # View in browser
 
 	http://localhost:8000
 
-# How to create a new wagtail project
+# How to create a new wagtail project (one-off)
 
 	vagrant ssh
 	source /vagrant/venv/bin/activate
 	wagtail start check_the_map
-	cd check_the_map
+	
