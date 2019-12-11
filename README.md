@@ -32,3 +32,10 @@ Based on Centos 7 installations
 # View in browser
 
 	http://localhost:8000
+
+# How to create a new wagtail project
+
+	vagrant ssh
+	source /vagrant/venv/bin/activate
+	wagtail start check_the_map
+	cd check_the_map
